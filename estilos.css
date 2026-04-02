@@ -52,12 +52,18 @@ h1 {
 }
 
 .social-icons {
+display: flex;
+    flex-direction: column; /* Apila los grupos verticalmente */
+    align-items: center;    /* Los centra horizontalmente */
+    gap: 20px;              /* <--- ESTA ES LA CLAVE: ajusta el espacio vertical entre filas */
+    padding: 10px;          /* Espacio opcional dentro del cuadro gris */
+}
+.icon-group {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 5px;
+    gap: 10px;              /* Espacio horizontal entre iconos de la misma fila */
 }
-
 .icon-link {
     width: 40px;
     height: 40px;

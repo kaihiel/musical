@@ -1,96 +1,82 @@
+/* 1. BASE Y RESET */
 body {
     background-color: #000000;
     color: #ffffff;
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
     padding: 0;
+    -webkit-text-size-adjust: 100%;
 }
 
+/* 2. ESTRUCTURA PRINCIPAL (ZOOM) */
 #wrapper {
-    width: 95%; /* Aprovecha más el ancho en celulares */
-    max-width: 900px; /* Más ancho en computadoras */
-    margin: 120px auto 50px auto;
+    width: 95%;
+    max-width: 850px; /* Equilibrio entre el anterior y el nuevo */
+    margin: 110px auto 40px auto;
 }
 
 #main-card {
     background-color: #333333;
-    padding: 60px 5% 30px 5%; /* Padding porcentual para adaptarse mejor */
-    border-radius: 15px;
+    padding: 85px 30px 40px 30px;
+    border-radius: 24px;
     position: relative;
     text-align: center;
-    margin-bottom: 25px;
+    margin-bottom: 30px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.6);
 }
+
+/* 3. PERFIL Y TEXTOS */
 .floating-profile {
-    /* --- TUS ESTILOS ORIGINALES --- */
-    width: 180px;
-    height: 180px;
-    border-radius: 15px;
+    width: 170px;
+    height: 170px;
+    border-radius: 22px;
     position: absolute;
-    top: -90px; 
+    top: -85px; 
     left: 50%;
-    margin-left: -90px; 
-    border: 4px solid #333333;
+    margin-left: -85px; 
+    border: 6px solid #333333;
     object-fit: cover;
-    background-color: #1a1a1a; /* Evita huecos transparentes mientras carga */
-
-    /* --- PREPARACIÓN PARA EL EFECTO --- */
-    cursor: zoom-in;
-    transition: all 0.3s ease-in-out;
-    z-index: 10;
-}
-
-/* --- EFECTO AL CLICAR (FOCUS) --- */
-.floating-profile.expanded {
-    outline: none;
-    cursor: zoom-out;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    margin-left: 0;
-    transform: translate(-50%, -50%);
-    width: auto;
-    height: auto;
-    max-width: 90vw;
-    max-height: 80vh;
-    z-index: 9999;
-    box-shadow: 0 0 100px rgba(0,0,0,0.9);
-    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.5);
 }
 
 h1 {
-    font-size: 32px;
-    margin-top: 80px;
-    margin-bottom: 5px;
+    font-size: 36px;
+    margin-top: 45px;
+    margin-bottom: 8px;
+    letter-spacing: -1px;
+    font-weight: bold;
 }
 
 .location {
-    color: #888;
-    font-size: 16px;
-    margin-bottom: 25px;
-}
-
-.bio-text {
-    font-size: 16px;
-    line-height: 1.5;
+    color: #bbbbbb;
+    font-size: 19px;
     margin-bottom: 35px;
 }
 
-.social-icons {
-display: flex;
-    flex-direction: column; /* Apila los grupos verticalmente */
-    align-items: center;    /* Los centra horizontalmente */
-    gap: 20px;              /* <--- ESTA ES LA CLAVE: ajusta el espacio vertical entre filas */
-    padding: 10px;          /* Espacio opcional dentro del cuadro gris */
+.bio-text {
+    font-size: 20px;
+    line-height: 1.6;
+    margin-bottom: 45px;
+    padding: 0 15px;
+    color: #e0e0e0;
 }
-.icon-group {
+
+/* 4. ICONOS REDES SOCIALES */
+.social-icons {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 10px;              /* Espacio horizontal entre iconos de la misma fila */
+    gap: 18px;
 }
+
 .icon-link {
-    width: 40px;
-    height: 40px;
+    width: 55px; /* Tamaño táctil óptimo */
+    height: 55px;
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.icon-link:hover {
+    transform: scale(1.15);
 }
 
 .icon-link img {
@@ -99,13 +85,15 @@ display: flex;
     border-radius: 50%;
 }
 
-/* Sección de Video Independiente */
+/* 5. SECCIÓN VIDEO */
 .video-section {
     width: 100%;
-    background-color: #333333; /* Ahora coincide con la tarjeta */
-    border-radius: 15px;
+    background-color: #1e1e1e;
+    border-radius: 24px;
     overflow: hidden;
-    padding: 10px; /* Pequeño marco interno */
+    padding: 12px;
+    margin-bottom: 30px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
 }
 
 .video-container {
@@ -116,57 +104,116 @@ display: flex;
 
 .video-container iframe {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 0; left: 0; width: 100%; height: 100%;
+    border-radius: 14px;
+}
+
+/* 6. DISCOGRAFÍA (EFECTO SPOTIFY) */
+#discography-section {
+    margin-top: 60px;
+    padding-bottom: 40px;
+}
+
+.section-title {
+    font-size: 30px;
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+
+.albums-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    gap: 25px;
+}
+
+.album-card {
+    background-color: #181818;
+    padding: 18px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.album-card:hover {
+    background-color: #282828;
+    transform: translateY(-5px);
+}
+
+.cover-wrapper {
+    position: relative;
     width: 100%;
-    height: 100%;
-    border-radius: 10px;
+    margin-bottom: 15px;
 }
-#discography-section { margin-top: 40px; text-align: left; }
-.section-title { color: #ffffff; font-size: 24px; margin-bottom: 20px; }
-.albums-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 20px; }
-.album-card { background-color: #181818; padding: 15px; border-radius: 8px; cursor: pointer; transition: 0.3s; }
-.album-card:hover { background-color: #282828; }
-.cover-wrapper { position: relative; width: 100%; margin-bottom: 12px; }
-.cover-wrapper img { width: 100%; aspect-ratio: 1/1; border-radius: 4px; }
 
-/* Botón de Play verde */
+.cover-wrapper img {
+    width: 100%;
+    aspect-ratio: 1/1;
+    border-radius: 6px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+}
+
+/* Botón Play Verde */
 .play-overlay { 
-    position: absolute; right: 8px; bottom: 8px; width: 48px; height: 48px; 
-    background-color: #1ed760; border-radius: 50%; display: flex; 
-    justify-content: center; align-items: center; opacity: 0; 
-    transform: translateY(10px); transition: 0.3s; 
+    position: absolute; 
+    right: 10px; 
+    bottom: 10px; 
+    width: 52px; 
+    height: 52px; 
+    background-color: #1ed760; 
+    border-radius: 50%; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    opacity: 0; 
+    transform: translateY(10px); 
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.4);
 }
-.album-card:hover .play-overlay { opacity: 1; transform: translateY(0); }
-.play-icon { width: 0; height: 0; border-top: 8px solid transparent; border-bottom: 8px solid transparent; border-left: 14px solid black; margin-left: 4px; }
 
-.album-card h3 { font-size: 14px; margin: 0; color: #fff; }
-/* Ajustes para pantallas pequeñas */
-@media (max-width: 480px) {
-    #wrapper {
-        margin-top: 100px; /* Menos espacio arriba en móviles */
-        width: 100%; /* Ocupa todo el ancho disponible */
-    }
-
-    #main-card {
-        border-radius: 0; /* Opcional: quita bordes redondeados en móvil para un look más moderno */
-        padding-top: 80px;
-    }
-
-    h1 {
-        font-size: 26px; /* Texto un poco más pequeño para que no se corte */
-    }
-
-    .albums-grid {
-        grid-template-columns: repeat(2, 1fr); /* Muestra 2 discos por fila en lugar de 1 o 4 */
-        gap: 10px;
-    }
-
-    .floating-profile {
-        width: 140px;
-        height: 140px;
-        top: -70px;
-        margin-left: -70px;
-    }
+.album-card:hover .play-overlay { 
+    opacity: 1; 
+    transform: translateY(0); 
 }
-.album-card p { font-size: 12px; color: #b3b3b3; margin: 5px 0 0 0; }
+
+.play-icon { 
+    width: 0; height: 0; 
+    border-top: 10px solid transparent; 
+    border-bottom: 10px solid transparent; 
+    border-left: 16px solid black; 
+    margin-left: 5px; 
+}
+
+.album-card h3 { 
+    font-size: 16px; 
+    margin: 0; 
+    color: #ffffff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.album-card p { 
+    font-size: 14px; 
+    color: #b3b3b3; 
+    margin: 8px 0 0 0; 
+}
+
+/* 7. CONTENEDOR REPRODUCTOR */
+#player-container {
+    background-color: #181818;
+    padding: 15px;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.7);
+    border: 1px solid #333;
+}
+
+/* 8. RESPONSIVE (MÓVIL) */
+@media (max-width: 600px) {
+    #wrapper { width: 92%; margin-top: 90px; }
+    h1 { font-size: 30px; }
+    .bio-text { font-size: 18px; }
+    .albums-grid { grid-template-columns: 1fr 1fr; gap: 15px; }
+    .floating-profile { width: 150px; height: 150px; top: -75px; margin-left: -75px; }
+    .album-card { padding: 12px; }
+    .play-overlay { width: 45px; height: 45px; }
+}
